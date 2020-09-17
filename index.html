@@ -97,7 +97,7 @@
 				studetData = await studetFetch.json();
 
 				document.getElementById(dropDownId).innerHTML = "";
-				
+
 				studetData.forEach((student) => {
 					let op = document.createElement("option");
 					op.innerHTML = student;
@@ -151,8 +151,10 @@
 
 		async function assignStudentsToMentor() {
 			
-			let e = document.getElementById("inputStudentForm1");
-			let mentorName = e.options[e.selectedIndex].value;
+			event.preventDefault();
+
+			let el = document.getElementById("inputStudentForm1");
+			let mentorName = el.options[el.selectedIndex].value;
 		
 			let students = [];
 
@@ -172,11 +174,12 @@
 		async function changeMentorForStudent() {
 			
 			event.preventDefault();
-			let e = document.getElementById("inputStudentForm2");
-			let studentName = e.options[e.selectedIndex].value;
 
-			let e1 = document.getElementById("inputMentorForm2").value;
-			let newMentorName = e1.options[e1.selectedIndex].value;
+			let el = document.getElementById("inputStudentForm2");
+			let studentName = el.options[el.selectedIndex].value;
+
+			let el1 = document.getElementById("inputMentorForm2").value;
+			let newMentorName = el1.options[el1.selectedIndex].value;
 
 			await fetch("https://assign-mentor-umesh.herokuapp.com/changeMentorForStudent", {
 				method: "POST",
