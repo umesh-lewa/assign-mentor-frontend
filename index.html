@@ -145,7 +145,7 @@
 
 		async function assignStudentsToMentor() {
 			
-			let e = document.getElementById("inputStudentForm1").value;
+			let e = document.getElementById("inputStudentForm1");
 			let mentorName = e.options[e.selectedIndex].value;
 		
 			let students = [];
@@ -166,7 +166,7 @@
 		async function changeMentorForStudent() {
 			
 			event.preventDefault();
-			let e = document.getElementById("inputStudentForm2").value;
+			let e = document.getElementById("inputStudentForm2");
 			let studentName = e.options[e.selectedIndex].value;
 
 			let e1 = document.getElementById("inputMentorForm2").value;
@@ -189,7 +189,7 @@
 
 			event.preventDefault();
 
-			let el = document.getElementById("inputMentorForm3").value;
+			let el = document.getElementById("inputMentorForm3");
 			let mentorName = el.options[el.selectedIndex].value;
 
 			let studentsData;
