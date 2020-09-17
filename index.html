@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Assign-Mentor</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container">
+		<form>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputState">Mentor</label>
+					<select id="inputMentorForm1" onclick="getMentors(inputMentorForm1)" class="form-control">
+						<option selected>Choose...</option>
+						<option>...</option>
+					</select>
+
+				</div>
+				<div class="form-group col-md-4">
+					<label for="exampleFormControlSelect1">Student</label>
+					<select class="form-control" onclick="getUnassignedStudents()" id="inputStudentForm1">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+
+				</div>
+				<div class="form-group col-md-2">
+
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Assign</button>
+		</form>
+
+		<form>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputState">Student</label>
+					<select id="inputStudentForm2" onclick="getStudents(inputStudentForm2)" class="form-control">
+						<option selected>Choose...</option>
+						<option>...</option>
+					</select>
+
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputState">Mentor</label>
+					<select id="inputMentorForm2" onclick="getMentors(inputMentorForm2)" class="form-control">
+						<option selected>Choose...</option>
+						<option>...</option>
+					</select>
+
+				</div>
+				<div class="form-group col-md-2">
+
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Assign</button>
+		</form>
+
+		<form>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputState">Mentor</label>
+					<select id="inputMentorForm3" onclick="getMentors(inputMentorForm3)" class="form-control">
+						<option selected>Choose...</option>
+						<option>...</option>
+					</select>
+
+				</div>
+				<div class="form-group col-md-4">
+
+				</div>
+				<div class="form-group col-md-2">
+
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Show Students</button>
+		</form>
+
+		<div class="container" id="studentDataForAMentor">
+
+		</div>
+
+	</div>
+
+	<script>
+		async function getStudents(dropDownId) {
+			//var studentDropDownValue = document.getElementById(dropDownId).value;
+			let studetData;
+			try {
+				let studetFetch = await fetch("https://localhost:8081/showAllStudents");
+				studetData = await studetFetch.json();
+
+				studetData.forEach((student) => {
+					let op = document.createElement("option");
+					op.innerHTML = student;
+					document.getElementById(dropDownId).appendChild(op);
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		async function getUnassignedStudents() {
+
+			let studetData;
+			try {
+				let studetFetch = await fetch("https://localhost:8081/showAllUnassignedStudents");
+				studetData = await studetFetch.json();
+
+				studetData.forEach((student) => {
+					let op = document.createElement("option");
+					op.innerHTML = student;
+					document.getElementById("inputStudentForm2").appendChild(op);
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		async function getMentors(dropDownId) {
+			
+			let mentorData;
+			try {
+				let mentorFetch = await fetch("https://localhost:8081/showAllMentors");
+				mentorData = await mentorFetch.json();
+
+				mentorData.forEach((mentor) => {
+					let op = document.createElement("option");
+					op.innerHTML = mentor;
+					document.getElementById(dropDownId).appendChild(op);
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		async function assignStudentsToMentor() {
+			
+			let mentorName;
+			let students = [];
+
+			await fetch("http://localhost:8081/assignStudentsToMentor", {
+				method: "POST",
+				body: {
+					"mentorName": mentorName,
+					"students": students
+				},
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			alert("Done")
+		}
+
+		async function changeMentorForStudent() {
+			
+			let studentName;
+			let newMentorName;
+
+			await fetch("http://localhost:8081/changeMentorForStudent", {
+				method: "POST",
+				body: {
+					"studentName": studentName,
+					"newMentorName": newMentorName
+				},
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			alert("Done")
+		}
+
+		async function getStudentsDataForMentors() {
+			let mentorData;
+			try {
+				let mentorFetch = await fetch("http://localhost:8081/showAllStudentsForMentor");
+				mentorData = await mentorFetch.json();
+
+				mentorData.forEach((mentor) => {
+					let op = document.createElement("option");
+					op.innerHTML = mentor;
+					document.getElementById(dropDownId).appendChild(op);
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	</script>
+</body>
+
+</html>
