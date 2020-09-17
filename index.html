@@ -10,7 +10,7 @@
 <body>
 
 	<div class="container">
-		<form>
+		<form onsubmit="assignStudentsToMentor()">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="inputState">Mentor</label>
@@ -35,7 +35,7 @@
 			<button type="submit" class="btn btn-primary">Assign</button>
 		</form>
 
-		<form>
+		<form onsubmit="changeMentorForStudent()">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="inputState">Student</label>
