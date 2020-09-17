@@ -16,18 +16,14 @@
 					<label for="inputState">Mentor</label>
 					<select id="inputMentorForm1" onclick="getMentors('inputMentorForm1')" class="form-control">
 						<option selected>Choose...</option>
-						<option>...</option>
+
 					</select>
 
 				</div>
 				<div class="form-group col-md-4">
 					<label for="exampleFormControlSelect1">Student</label>
 					<select class="form-control" onclick="getUnassignedStudents()" id="inputStudentForm1">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+
 					</select>
 
 				</div>
@@ -45,7 +41,7 @@
 					<label for="inputState">Student</label>
 					<select id="inputStudentForm2" onclick="getStudents('inputStudentForm2')" class="form-control">
 						<option selected>Choose...</option>
-						<option>...</option>
+
 					</select>
 
 				</div>
@@ -53,7 +49,7 @@
 					<label for="inputState">Mentor</label>
 					<select id="inputMentorForm2" onclick="getMentors('inputMentorForm2')" class="form-control">
 						<option selected>Choose...</option>
-						<option>...</option>
+
 					</select>
 
 				</div>
@@ -71,7 +67,7 @@
 					<label for="inputState">Mentor</label>
 					<select id="inputMentorForm3" onclick="getMentors('inputMentorForm3')" class="form-control">
 						<option selected>Choose...</option>
-						<option>...</option>
+
 					</select>
 
 				</div>
@@ -103,6 +99,7 @@
 				studetData.forEach((student) => {
 					let op = document.createElement("option");
 					op.innerHTML = student;
+					document.getElementById(dropDownId).innerHTML = "";
 					document.getElementById(dropDownId).appendChild(op);
 				});
 			} catch (error) {
@@ -120,6 +117,7 @@
 				studetData.forEach((student) => {
 					let op = document.createElement("option");
 					op.innerHTML = student;
+					document.getElementById("inputStudentForm2").innerHTML = "";
 					document.getElementById("inputStudentForm2").appendChild(op);
 				});
 			} catch (error) {
@@ -137,6 +135,7 @@
 				mentorData.forEach((mentor) => {
 					let op = document.createElement("option");
 					op.innerHTML = mentor;
+					document.getElementById(dropDownId).innerHTML = "";
 					document.getElementById(dropDownId).appendChild(op);
 				});
 			} catch (error) {
