@@ -96,10 +96,12 @@
 				let studetFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllStudents");
 				studetData = await studetFetch.json();
 
+				document.getElementById(dropDownId).innerHTML = "";
+				
 				studetData.forEach((student) => {
 					let op = document.createElement("option");
 					op.innerHTML = student;
-					document.getElementById(dropDownId).innerHTML = "";
+					
 					document.getElementById(dropDownId).appendChild(op);
 				});
 			} catch (error) {
@@ -114,10 +116,12 @@
 				let studetFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllUnassignedStudents");
 				studetData = await studetFetch.json();
 
+				document.getElementById("inputStudentForm2").innerHTML = "";
+
 				studetData.forEach((student) => {
 					let op = document.createElement("option");
 					op.innerHTML = student;
-					document.getElementById("inputStudentForm2").innerHTML = "";
+					
 					document.getElementById("inputStudentForm2").appendChild(op);
 				});
 			} catch (error) {
@@ -132,10 +136,12 @@
 				let mentorFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllMentors");
 				mentorData = await mentorFetch.json();
 
+				document.getElementById(dropDownId).innerHTML = "";
+
 				mentorData.forEach((mentor) => {
 					let op = document.createElement("option");
 					op.innerHTML = mentor;
-					document.getElementById(dropDownId).innerHTML = "";
+					
 					document.getElementById(dropDownId).appendChild(op);
 				});
 			} catch (error) {
@@ -197,10 +203,11 @@
 				let studentsFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllStudentsForMentor/"+mentorName);
 				studentsData = await studentsFetch.json();
 
+				document.getElementById("studentDataForAMentor").innerHTML = "";
+
 				studentsData.forEach((student) => {
 					let op = document.createElement("p");
 					op.innerHTML = student;
-					document.getElementById("studentDataForAMentor").innerHTML = "";
 					document.getElementById("studentDataForAMentor").appendChild(op);
 				});
 			} catch (error) {
