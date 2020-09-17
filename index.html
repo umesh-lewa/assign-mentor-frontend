@@ -187,6 +187,8 @@
 
 		async function getStudentsDataForMentors() {
 
+			event.preventDefault();
+			
 			let e = document.getElementById("inputMentorForm3").value;
 			let mentorName = e.options[e.selectedIndex].value;
 
