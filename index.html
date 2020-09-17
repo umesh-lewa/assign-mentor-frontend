@@ -97,7 +97,7 @@
 			//var studentDropDownValue = document.getElementById(dropDownId).value;
 			let studetData;
 			try {
-				let studetFetch = await fetch("https://localhost:8081/showAllStudents");
+				let studetFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllStudents");
 				studetData = await studetFetch.json();
 
 				studetData.forEach((student) => {
@@ -114,7 +114,7 @@
 
 			let studetData;
 			try {
-				let studetFetch = await fetch("https://localhost:8081/showAllUnassignedStudents");
+				let studetFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllUnassignedStudents");
 				studetData = await studetFetch.json();
 
 				studetData.forEach((student) => {
@@ -131,7 +131,7 @@
 			
 			let mentorData;
 			try {
-				let mentorFetch = await fetch("https://localhost:8081/showAllMentors");
+				let mentorFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllMentors");
 				mentorData = await mentorFetch.json();
 
 				mentorData.forEach((mentor) => {
@@ -149,7 +149,7 @@
 			let mentorName;
 			let students = [];
 
-			await fetch("http://localhost:8081/assignStudentsToMentor", {
+			await fetch("https://assign-mentor-umesh.herokuapp.com/assignStudentsToMentor", {
 				method: "POST",
 				body: {
 					"mentorName": mentorName,
@@ -167,7 +167,7 @@
 			let studentName;
 			let newMentorName;
 
-			await fetch("http://localhost:8081/changeMentorForStudent", {
+			await fetch("https://assign-mentor-umesh.herokuapp.com/changeMentorForStudent", {
 				method: "POST",
 				body: {
 					"studentName": studentName,
@@ -183,7 +183,7 @@
 		async function getStudentsDataForMentors() {
 			let mentorData;
 			try {
-				let mentorFetch = await fetch("http://localhost:8081/showAllStudentsForMentor");
+				let mentorFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllStudentsForMentor");
 				mentorData = await mentorFetch.json();
 
 				mentorData.forEach((mentor) => {
