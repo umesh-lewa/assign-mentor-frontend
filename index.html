@@ -178,7 +178,7 @@
 			let el = document.getElementById("inputStudentForm2");
 			let studentName = el.options[el.selectedIndex].value;
 
-			let el1 = document.getElementById("inputMentorForm2").value;
+			let el1 = document.getElementById("inputMentorForm2");
 			let newMentorName = el1.options[el1.selectedIndex].value;
 
 			await fetch("https://assign-mentor-umesh.herokuapp.com/changeMentorForStudent", {
