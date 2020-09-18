@@ -164,17 +164,17 @@
 			}
 
 			await fetch("https://assign-mentor-umesh.herokuapp.com/assignStudentsToMentor", {
-				method: "POST",
+				method: "PUT",
 				mode: 'cors',
-				body: {
+				body: JSON.stringify({
 					"mentorName": mentorName,
 					"students": students
-				},
+				}),
 				headers: {
 					"Content-Type": "application/json",
 				},
 			});
-			alert("Done")
+			alert("Done");
 		}
 
 		async function changeMentorForStudent() {
@@ -198,7 +198,7 @@
 					"Content-Type": "application/json",
 				},
 			});
-			alert("Done")
+			alert("Done");
 		}
 
 		async function getStudentsDataForMentors() {
