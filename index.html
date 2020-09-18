@@ -188,7 +188,7 @@
 			let newMentorName = el1.options[el1.selectedIndex].value;
 
 			await fetch("https://assign-mentor-umesh.herokuapp.com/changeMentorForStudent", {
-				method: "POST",
+				method: "PUT",
 				mode: 'cors',
 				body: {
 					"studentName": studentName,
