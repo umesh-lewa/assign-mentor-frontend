@@ -90,7 +90,7 @@
 
 	<script>
 		async function getStudents(dropDownId) {
-			
+
 			let studetData;
 			try {
 				let studetFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllStudents");
@@ -101,7 +101,7 @@
 				studetData.forEach((student) => {
 					let op = document.createElement("option");
 					op.innerHTML = student;
-					
+
 					document.getElementById(dropDownId).appendChild(op);
 				});
 			} catch (error) {
@@ -121,7 +121,7 @@
 				studetData.forEach((student) => {
 					let op = document.createElement("option");
 					op.innerHTML = student;
-					
+
 					document.getElementById("inputStudentForm2").appendChild(op);
 				});
 			} catch (error) {
@@ -130,7 +130,7 @@
 		}
 
 		async function getMentors(dropDownId) {
-			
+
 			let mentorData;
 			try {
 				let mentorFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllMentors");
@@ -141,7 +141,7 @@
 				mentorData.forEach((mentor) => {
 					let op = document.createElement("option");
 					op.innerHTML = mentor;
-					
+
 					document.getElementById(dropDownId).appendChild(op);
 				});
 			} catch (error) {
@@ -150,16 +150,22 @@
 		}
 
 		async function assignStudentsToMentor() {
-			
+
 			event.preventDefault();
 
 			let el = document.getElementById("inputStudentForm1");
 			let mentorName = el.options[el.selectedIndex].value;
-		
+
 			let students = [];
+			for (var option of document.getElementById('inputStudentForm1').options) {
+				if (option.selected) {
+					students.push(option.value);
+				}
+			}
 
 			await fetch("https://assign-mentor-umesh.herokuapp.com/assignStudentsToMentor", {
 				method: "POST",
+				mode: 'cors',
 				body: {
 					"mentorName": mentorName,
 					"students": students
@@ -172,7 +178,7 @@
 		}
 
 		async function changeMentorForStudent() {
-			
+
 			event.preventDefault();
 
 			let el = document.getElementById("inputStudentForm2");
@@ -183,6 +189,7 @@
 
 			await fetch("https://assign-mentor-umesh.herokuapp.com/changeMentorForStudent", {
 				method: "POST",
+				mode: 'cors',
 				body: {
 					"studentName": studentName,
 					"newMentorName": newMentorName
@@ -203,7 +210,7 @@
 
 			let studentsData;
 			try {
-				let studentsFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllStudentsForMentor/"+mentorName);
+				let studentsFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllStudentsForMentor/" + mentorName);
 				studentsData = await studentsFetch.json();
 
 				document.getElementById("studentDataForAMentor").innerHTML = "";
