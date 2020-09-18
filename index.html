@@ -116,13 +116,13 @@
 				let studetFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllUnassignedStudents");
 				studetData = await studetFetch.json();
 
-				document.getElementById("inputStudentForm2").innerHTML = "";
+				document.getElementById("inputStudentForm1").innerHTML = "";
 
 				studetData.forEach((student) => {
 					let op = document.createElement("option");
 					op.innerHTML = student;
 
-					document.getElementById("inputStudentForm2").appendChild(op);
+					document.getElementById("inputStudentForm1").appendChild(op);
 				});
 			} catch (error) {
 				console.log(error);
