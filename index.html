@@ -190,10 +190,10 @@
 			await fetch("https://assign-mentor-umesh.herokuapp.com/changeMentorForStudent", {
 				method: "PUT",
 				mode: 'cors',
-				body: {
+				body: JSON.stringify({
 					"studentName": studentName,
 					"newMentorName": newMentorName
-				},
+				}),
 				headers: {
 					"Content-Type": "application/json",
 				},
