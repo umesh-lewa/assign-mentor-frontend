@@ -10,11 +10,23 @@
 <body>
 
 	<div class="container">
+
+		<h1 class="display-3">Assign Mentor</h1>
+		
+		<br>
+		<br>
+
+		<input type="button" class="btn btn-warning" id="btnGenerate" value="Populate Students" onclick="populateStudents()" />
+		<input type="button" class="btn btn-warning" id="btnGenerate" value="Populate Mentors" onclick="populateMentors()" />
+
+		<br>
+		<br>
+
 		<form onsubmit="assignStudentsToMentor()">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="inputState">Mentor</label>
-					<select id="inputMentorForm1" onclick="getMentors('inputMentorForm1')" class="form-control">
+					<select id="inputMentorForm1" class="form-control">
 						<option selected>Choose...</option>
 
 					</select>
@@ -22,7 +34,8 @@
 				</div>
 				<div class="form-group col-md-4">
 					<label for="exampleFormControlSelect1">Student</label>
-					<select class="form-control" onclick="getUnassignedStudents()" id="inputStudentForm1">
+					<select class="form-control" id="inputStudentForm1">
+						<option selected>Choose...</option>
 
 					</select>
 
@@ -32,14 +45,17 @@
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-primary">Assign</button>
+			<button type="submit" class="btn btn-success">Assign</button>
 		</form>
+
+		<br>
+		<br>
 
 		<form onsubmit="changeMentorForStudent()">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="inputState">Student</label>
-					<select id="inputStudentForm2" onchange="getStudents('inputStudentForm2')" class="form-control">
+					<select id="inputStudentForm2" class="form-control">
 						<option selected>Choose...</option>
 
 					</select>
@@ -47,7 +63,7 @@
 				</div>
 				<div class="form-group col-md-4">
 					<label for="inputState">Mentor</label>
-					<select id="inputMentorForm2" onchange="getMentors('inputMentorForm2')" class="form-control">
+					<select id="inputMentorForm2" class="form-control">
 						<option selected>Choose...</option>
 
 					</select>
@@ -58,15 +74,18 @@
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-primary">Assign</button>
+			<button type="submit" class="btn btn-success">Assign</button>
 		</form>
+
+		<br>
+		<br>
 
 		<form onsubmit="getStudentsDataForMentors()">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="inputState">Mentor</label>
-					<select id="inputMentorForm3" onclick="getMentors('inputMentorForm3')" class="form-control">
-						<option selected>Choose...</option>
+					<select id="inputMentorForm3" class="form-control">
+						<option id="chooseinputMentorForm3" selected>Choose...</option>
 
 					</select>
 
@@ -79,7 +98,7 @@
 				</div>
 			</div>
 
-			<button type="submit" class="btn btn-primary">Show Students</button>
+			<button type="submit" class="btn btn-info">Show Students</button>
 		</form>
 
 		<div class="container" id="studentDataForAMentor">
@@ -89,6 +108,27 @@
 	</div>
 
 	<script>
+
+		function populateStudents() {
+			
+			//onclick="getUnassignedStudents()"
+			getUnassignedStudents();
+			//onchange="getStudents('inputStudentForm2')"
+			getStudents('inputStudentForm2');
+			
+		}
+
+		function populateMentors() {
+
+			//onclick="getMentors('inputMentorForm1')"
+			getMentors('inputMentorForm1');
+			//onchange="getMentors('inputMentorForm2')"
+			getMentors('inputMentorForm2')
+			//onclick="getMentors('inputMentorForm3')"
+			getMentors('inputMentorForm3')
+
+		}
+
 		async function getStudents(dropDownId) {
 
 			let studetData;
@@ -136,7 +176,10 @@
 				let mentorFetch = await fetch("https://assign-mentor-umesh.herokuapp.com/showAllMentors");
 				mentorData = await mentorFetch.json();
 
+				//let chooseOp = document.getElementById("choose" + dropDownId);
+
 				document.getElementById(dropDownId).innerHTML = "";
+				//document.getElementById(dropDownId).appendChild(chooseOp);
 
 				mentorData.forEach((mentor) => {
 					let op = document.createElement("option");
